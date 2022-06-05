@@ -9,8 +9,8 @@ module.exports = () => {
 	for (let i = 0; i < 2000; i++) {
 		data.users.push({
 			id: i,
-			name: faker.name.firstName,
-			email: faker.internet.email
+			name: faker.name.firstName(),
+			email: faker.internet.email()
 		})
 	}
 
