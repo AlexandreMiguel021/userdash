@@ -10,7 +10,16 @@ module.exports = () => {
 		data.users.push({
 			id: i,
 			name: faker.name.firstName(),
-			email: faker.internet.email()
+			email: faker.internet.email(),
+			birthdate: faker.date.past(),
+			phone: faker.phone.phoneNumber(),
+			image: faker.image.avatar(),
+			address: {
+				country: faker.address.country(),
+				state: faker.address.state(),
+				street: faker.address.streetName(),
+				number: (Math.random() * 100).toFixed(0)
+			}
 		})
 	}
 
