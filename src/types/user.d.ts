@@ -9,7 +9,8 @@ export type User = {
 	id: number
 	name: string
 	email: string
-	birthdate: string
+	birthdate?: string
 	phone: string
+	image: string
 	address: Address
 }
