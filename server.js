@@ -6,14 +6,14 @@ module.exports = () => {
 		users: []
 	}
 
-	for (let i = 0; i < 2000; i++) {
+	for (let i = 0; i < 1000; i++) {
 		data.users.push({
 			id: i,
 			name: faker.name.firstName(),
 			email: faker.internet.email(),
 			birthdate: faker.date.past(),
 			phone: faker.phone.phoneNumber(),
-			image: faker.image.avatar(),
+			image: '/images/user.jpg',
 			address: {
 				country: faker.address.country(),
 				state: faker.address.state(),
