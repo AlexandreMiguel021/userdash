@@ -1,24 +1,11 @@
 import Image from 'next/image'
-import { memo } from 'react'
-import { User as UserType } from 'types/user'
 import S from './styles.module.scss'
+import { memo, useContext } from 'react'
+import { User as UserProps } from 'types/user'
+import { UserContext } from 'contexts/UserContext'
 
-interface UserProps extends UserType {
-	selectedUser: number
-	setSelectedUser: (id: number) => void
-}
-
-const User = ({
-	id,
-	name,
-	email,
-	image,
-	phone,
-	address,
-	selectedUser,
-	setSelectedUser
-}: UserProps) => {
-	console.log(image)
+const User = ({ id, name, email, image, phone, address }: UserProps) => {
+	const { selectedUser, setSelectedUser } = useContext(UserContext)
 
 	return (
 		<li
@@ -41,15 +28,15 @@ const User = ({
 			</section>
 			<aside>
 				<div>
-					<span>Country:</span>
+					<span>País:</span>
 					{address.country}
 				</div>
 				<div>
-					<span>State:</span>
+					<span>Estado:</span>
 					{address.state}
 				</div>
 				<div>
-					<span>Street:</span>
+					<span>Endereço:</span>
 					{address.street}
 				</div>
 			</aside>

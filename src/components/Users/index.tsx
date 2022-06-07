@@ -1,14 +1,10 @@
-import { memo, useState } from 'react'
-import { User as UserType } from 'types/user'
+import { memo, useContext } from 'react'
 import User from 'components/User'
 import S from './styles.module.scss'
+import { UserContext } from 'contexts/UserContext'
 
-type UsersProps = {
-	users: UserType[]
-}
-
-const Users = ({ users }: UsersProps) => {
-	const [selectedUser, setSelectedUser] = useState(-1)
+const Users = () => {
+	const { users } = useContext(UserContext)
 
 	return (
 		<ul className={S.Wrapper}>
@@ -21,8 +17,6 @@ const Users = ({ users }: UsersProps) => {
 					address={address}
 					phone={phone}
 					image={image}
-					selectedUser={selectedUser}
-					setSelectedUser={setSelectedUser}
 				/>
 			))}
 		</ul>

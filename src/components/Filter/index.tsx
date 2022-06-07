@@ -1,19 +1,14 @@
-import { FormEvent, useState } from 'react'
-import { api } from 'services/api'
-import { User } from 'types/user'
+import { UserContext } from 'contexts/UserContext'
+import { FormEvent, useContext, useState } from 'react'
 import S from './styles.module.scss'
 
-type FilterProps = {
-	setUsers: (data: User[]) => void
-}
-
-const Filter = ({ setUsers }: FilterProps) => {
+const Filter = () => {
 	const [filter, setFilter] = useState('')
+	const { filterUsers } = useContext(UserContext)
+
 	const handleSubmit = async (e: FormEvent) => {
 		e.preventDefault()
-		const res = await api.get(`/users?q=${filter}`)
-		const data = await res.data
-		setUsers(data)
+		filterUsers(filter)
 	}
 
 	return (
