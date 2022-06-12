@@ -1,0 +1,26 @@
+.wrapper {
+	flex-direction: column;
+	display: flex;
+
+	input {
+		background-color: rgb(31, 31, 31);
+		font-family: 'Poppins', sans-serif;
+		border: 0.1rem solid #0fdb7c94;
+		border-radius: 0.5rem;
+		margin-bottom: 2rem;
+		font-size: 1.6rem;
+		padding: 1rem;
+		outline: none;
+		color: white;
+		opacity: 1;
+
+		&:focus {
+			background: transparent;
+		}
+	}
+
+	label {
+		margin-bottom: 0.5rem;
+		font-size: 1.4rem;
+	}
+}
