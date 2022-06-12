@@ -10,10 +10,12 @@
 		"server": "json-server -d 1000 -w -p 3333 ./server.js"
 	},
 	"dependencies": {
+		"@heroicons/react": "^1.0.6",
 		"axios": "^0.27.2",
 		"next": "12.1.6",
 		"react": "18.1.0",
-		"react-dom": "18.1.0"
+		"react-dom": "18.1.0",
+		"react-hook-form": "^7.32.0"
 	},
 	"devDependencies": {
 		"@faker-js/faker": "^7.1.0",
