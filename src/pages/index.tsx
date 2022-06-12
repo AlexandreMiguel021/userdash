@@ -8,13 +8,13 @@ import { UserContextProvider } from 'contexts/UserContext'
 const Home: NextPage = () => {
 	return (
 		<>
-			<Header />
-			<main className={S.main}>
-				<UserContextProvider>
+			<UserContextProvider>
+				<Header />
+				<main className={S.main}>
 					<Filter />
 					<Users />
-				</UserContextProvider>
-			</main>
+				</main>
+			</UserContextProvider>
 		</>
 	)
 }
