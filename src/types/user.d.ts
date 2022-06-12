@@ -14,3 +14,16 @@ export type User = {
 	image: string
 	address: Address
 }
+
+export type UserFormData = {
+	id?: number
+	name?: string
+	email?: string
+	birthdate?: string
+	phone?: string
+	image?: string
+	country?: string
+	state?: string
+	street?: string
+	number?: string
+}
