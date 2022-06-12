@@ -6,18 +6,19 @@ module.exports = () => {
 		users: []
 	}
 
-	for (let i = 0; i < 1000; i++) {
+	for (let i = 0; i < 8; i++) {
 		data.users.push({
 			id: i,
-			name: faker.name.firstName(),
-			email: faker.internet.email(),
-			birthdate: faker.date.past(),
-			phone: faker.phone.phoneNumber(),
-			image: '/images/user.jpg',
+			name: 'Alexandre Freitas Miguel',
+			email: 'Alexandremiguel@example.com',
+			birthdate: new Date(),
+			phone: '41 99999-9999',
+			image: 'https://avatars.githubusercontent.com/u/95953567?v=4',
 			address: {
-				country: faker.address.country(),
-				state: faker.address.state(),
-				street: faker.address.streetName(),
+				country: 'Brasil',
+				state: 'Paraná',
+				city: 'São José dos Pinhais',
+				street: 'Rua alguma coisa',
 				number: (Math.random() * 100).toFixed(0)
 			}
 		})
