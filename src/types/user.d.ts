@@ -6,7 +6,7 @@ export type Address = {
 }
 
 export type User = {
-	id: number
+	_id: string
 	name: string
 	email: string
 	birthdate?: string
@@ -16,12 +16,12 @@ export type User = {
 }
 
 export type UserFormData = {
-	id?: number
+	_id?: string
 	name?: string
 	email?: string
 	birthdate?: string
 	phone?: string
-	image?: string
+	avatar?: string
 	country?: string
 	state?: string
 	street?: string
