@@ -1,7 +1,6 @@
 import { H1 } from 'components/Typography'
-import Link from 'next/link'
 import { memo } from 'react'
-import { Header as StyleHeader, Nav } from './styles'
+import { Header as StyleHeader } from './styles'
 
 const Header = () => (
 	<StyleHeader>

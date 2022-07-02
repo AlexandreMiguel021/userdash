@@ -22,7 +22,7 @@ export type UserContextType = {
 	setIsOpenModal: (newState: boolean) => void
 	setSelectedUser: (newState: string) => void
 	setUsers: (newState: User[]) => void
-	filterUsers: (filter: string) => void
+	getUsers: () => void
 	createUser: (data: UserFormData) => void
 	updateUser: (data: UserFormData) => void
 	deleteUser: () => void
@@ -38,10 +38,10 @@ export const UserContextProvider = ({ children }: UserContextProps) => {
 	const [userFormDefaultValues, setUserFormDefaultValues] =
 		useState<UserFormData>({})
 
-	const filterUsers = async (filter: string) => {
+	const getUsers = async () => {
 		setLoading(true)
 		try {
-			const { data } = await getUsersRequest(filter)
+			const { data } = await getUsersRequest()
 			setUsers(data)
 		} catch (error) {
 			toast.error(error)
@@ -115,7 +115,7 @@ export const UserContextProvider = ({ children }: UserContextProps) => {
 				setSelectedUser,
 				users,
 				setUsers,
-				filterUsers,
+				getUsers,
 				createUser,
 				updateUser,
 				deleteUser,

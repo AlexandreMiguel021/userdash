@@ -1,17 +1,14 @@
 import Button from 'components/_ui/Button'
-import Input from 'components/_ui/Input'
 import { UserContext } from 'contexts/UserContext'
-import { FormEvent, useContext, useState } from 'react'
+import { FormEvent, useContext } from 'react'
 import { Filter as StyleFilter } from './styles'
 
 const UsersFilter = () => {
-	const [filter, setFilter] = useState('')
-	const { filterUsers, setIsOpenModal, setSelectedUser } =
-		useContext(UserContext)
+	const { getUsers, setIsOpenModal, setSelectedUser } = useContext(UserContext)
 
 	const handleSubmit = async (e: FormEvent) => {
 		e.preventDefault()
-		filterUsers(filter)
+		getUsers()
 	}
 
 	const handleCreate = () => {
@@ -21,15 +18,8 @@ const UsersFilter = () => {
 
 	return (
 		<StyleFilter onSubmit={handleSubmit}>
-			<Input
-				as='input'
-				type='text'
-				value={filter}
-				placeholder={'Filtrar usuários...'}
-				onChange={(e) => setFilter(e.target.value)}
-			/>
 			<Button bgColor='primary' type='submit'>
-				Filtrar
+				Listar usuários
 			</Button>
 			<Button bgColor='primary' type='button' onClick={handleCreate}>
 				Criar
