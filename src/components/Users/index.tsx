@@ -1,25 +1,17 @@
 import { memo, useContext } from 'react'
-import User from 'components/User'
-import S from './styles.module.scss'
+import User from 'components/Users/User'
 import { UserContext } from 'contexts/UserContext'
+import { Wrapper } from './styles'
 
 const Users = () => {
 	const { users } = useContext(UserContext)
 
 	return (
-		<ul className={S.Wrapper}>
-			{users.map(({ id, name, email, address, phone, image }) => (
-				<User
-					key={id}
-					id={id}
-					name={name}
-					email={email}
-					address={address}
-					phone={phone}
-					image={image}
-				/>
+		<Wrapper>
+			{users.map((user) => (
+				<User key={user._id} {...user} />
 			))}
-		</ul>
+		</Wrapper>
 	)
 }
 
