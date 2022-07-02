@@ -1,21 +1,17 @@
-import Filter from 'components/Filter'
-import Header from 'components/Header'
 import Users from 'components/Users'
 import type { NextPage } from 'next'
-import S from 'styles/Home.module.scss'
-import { UserContextProvider } from 'contexts/UserContext'
+import { UserContext } from 'contexts/UserContext'
+import { useContext } from 'react'
+import Loading from 'components/_ui/Loading'
+import UsersFilter from 'components/Users/Filter'
 
 const Home: NextPage = () => {
+	const { loading } = useContext(UserContext)
 	return (
-		<>
-			<UserContextProvider>
-				<Header />
-				<main className={S.main}>
-					<Filter />
-					<Users />
-				</main>
-			</UserContextProvider>
-		</>
+		<main>
+			<UsersFilter />
+			{loading ? <Loading /> : <Users />}
+		</main>
 	)
 }
 
