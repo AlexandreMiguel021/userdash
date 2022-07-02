@@ -14,6 +14,7 @@
 		"noEmit": true,
 		"esModuleInterop": true,
 		"module": "esnext",
+		"useUnknownInCatchVariables": false,
 		"moduleResolution": "node",
 		"resolveJsonModule": true,
 		"isolatedModules": true,
@@ -24,7 +25,9 @@
 		"next-env.d.ts",
 		"**/*.ts",
 		"**/*.tsx",
-		"server.js"
+		"server.js",
+		"src/services/db/index.js",
+		"src/pages/api/users/[id].js"
 	],
 	"exclude": [
 		"node_modules"
