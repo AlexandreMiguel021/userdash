@@ -1,43 +1,109 @@
-import UserModal from 'components/UserModal'
+import UsersModal from 'components/Users/Modal'
 import React, { createContext, ReactNode, useState } from 'react'
-import { api } from 'services/api'
-import { User } from 'types/user'
+import { toast } from 'react-toastify'
+import {
+	createUserRequest,
+	deleteUserByIdRequest,
+	getUsersRequest,
+	updateUserByIdRequest
+} from 'services/api/requests'
+import { User, UserFormData } from 'types/user'
 
 type UserContextProps = {
 	children: ReactNode
 }
 
-type UserContextType = {
+export type UserContextType = {
 	isOpenModal: boolean
-	selectedUser: number
+	selectedUser: string
 	users: User[]
+	loading: boolean
+	setUserFormDefaultValues: (newState: UserFormData) => void
 	setIsOpenModal: (newState: boolean) => void
-	setSelectedUser: (newState: number) => void
+	setSelectedUser: (newState: string) => void
 	setUsers: (newState: User[]) => void
 	filterUsers: (filter: string) => void
+	createUser: (data: UserFormData) => void
+	updateUser: (data: UserFormData) => void
+	deleteUser: () => void
 }
 
-const initialValue = {
-	isOpenModal: false,
-	selectedUser: -1,
-	users: [],
-	setIsOpenModal: () => ({}),
-	setSelectedUser: () => ({}),
-	setUsers: () => ({}),
-	filterUsers: () => ({})
-}
-
-export const UserContext = createContext<UserContextType>(initialValue)
+export const UserContext = createContext<UserContextType>({} as UserContextType)
 
 export const UserContextProvider = ({ children }: UserContextProps) => {
-	const [isOpenModal, setIsOpenModal] = useState(initialValue.isOpenModal)
-	const [selectedUser, setSelectedUser] = useState(initialValue.selectedUser)
+	const [isOpenModal, setIsOpenModal] = useState(false)
+	const [selectedUser, setSelectedUser] = useState<string>('')
 	const [users, setUsers] = useState<User[]>([])
+	const [loading, setLoading] = useState(false)
+	const [userFormDefaultValues, setUserFormDefaultValues] =
+		useState<UserFormData>({})
 
 	const filterUsers = async (filter: string) => {
-		const res = await api.get(`/users?q=${filter}`)
-		const data = await res.data
-		setUsers(data)
+		setLoading(true)
+		try {
+			const { data } = await getUsersRequest(filter)
+			setUsers(data)
+		} catch (error) {
+			toast.error(error)
+		} finally {
+			setLoading(false)
+		}
+	}
+
+	const createUser = async (data: UserFormData) => {
+		const user = {
+			name: data.name,
+			email: data.email,
+			phone: data.phone,
+			image: data.avatar,
+			address: {
+				country: data.country,
+				state: data.state,
+				street: data.street,
+				number: data.number
+			}
+		}
+
+		try {
+			setLoading(true)
+			await createUserRequest(user)
+			toast.success('Usuário criado com sucesso!')
+		} catch (error) {
+			console.log(error)
+		} finally {
+			setLoading(false)
+		}
+	}
+
+	const updateUser = async (data: UserFormData) => {
+		const user = {
+			name: data.name,
+			email: data.email,
+			phone: data.phone,
+			image: data.avatar,
+			address: {
+				country: data.country,
+				state: data.state,
+				street: data.street,
+				number: data.number
+			}
+		}
+
+		try {
+			await updateUserByIdRequest(selectedUser, user)
+			toast.success('Usuário alterado com sucesso!')
+		} catch (error) {
+			toast.error(error.response.data.message)
+		}
+	}
+
+	const deleteUser = async () => {
+		try {
+			await deleteUserByIdRequest(selectedUser)
+			toast.success('Usuário deletado com sucesso!')
+		} catch (error) {
+			console.log(error)
+		}
 	}
 
 	return (
@@ -49,11 +115,16 @@ export const UserContextProvider = ({ children }: UserContextProps) => {
 				setSelectedUser,
 				users,
 				setUsers,
-				filterUsers
+				filterUsers,
+				createUser,
+				updateUser,
+				deleteUser,
+				setUserFormDefaultValues,
+				loading
 			}}
 		>
 			{children}
-			{isOpenModal && <UserModal />}
+			{isOpenModal && <UsersModal initialValues={userFormDefaultValues} />}
 		</UserContext.Provider>
 	)
 }
