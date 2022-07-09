@@ -28,15 +28,16 @@ export type UserContextType = {
 	deleteUser: () => void
 }
 
-export const UserContext = createContext<UserContextType>({} as UserContextType)
+export const UserContext = createContext({} as UserContextType)
 
 export const UserContextProvider = ({ children }: UserContextProps) => {
 	const [isOpenModal, setIsOpenModal] = useState(false)
-	const [selectedUser, setSelectedUser] = useState<string>('')
-	const [users, setUsers] = useState<User[]>([])
+	const [selectedUser, setSelectedUser] = useState('')
+	const [users, setUsers] = useState([] as User[])
 	const [loading, setLoading] = useState(false)
-	const [userFormDefaultValues, setUserFormDefaultValues] =
-		useState<UserFormData>({})
+	const [userFormDefaultValues, setUserFormDefaultValues] = useState(
+		{} as UserFormData
+	)
 
 	const getUsers = async () => {
 		setLoading(true)
@@ -50,7 +51,7 @@ export const UserContextProvider = ({ children }: UserContextProps) => {
 		}
 	}
 
-	const createUser = async (data: UserFormData) => {
+	async function createUser(data: UserFormData) {
 		const user = {
 			name: data.name,
 			email: data.email,
@@ -75,7 +76,7 @@ export const UserContextProvider = ({ children }: UserContextProps) => {
 		}
 	}
 
-	const updateUser = async (data: UserFormData) => {
+	async function updateUser(data: UserFormData) {
 		const user = {
 			name: data.name,
 			email: data.email,
@@ -97,7 +98,7 @@ export const UserContextProvider = ({ children }: UserContextProps) => {
 		}
 	}
 
-	const deleteUser = async () => {
+	async function deleteUser() {
 		try {
 			await deleteUserByIdRequest(selectedUser)
 			toast.success('Usuário deletado com sucesso!')
