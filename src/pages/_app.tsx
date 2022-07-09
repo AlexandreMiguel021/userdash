@@ -13,7 +13,7 @@ export default function MyApp({ Component, pageProps }: AppProps) {
 			<ThemeProvider theme={theme}>
 				<Header />
 				<Component {...pageProps} />
-				<ToastContainer style={{ fontSize: '1.8rem' }} />
+				<ToastContainer theme='dark' style={{ fontSize: '1.8rem' }} />
 				<GlobalStyles />
 			</ThemeProvider>
 		</UserContextProvider>
