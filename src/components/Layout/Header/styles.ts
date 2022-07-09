@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import theme from 'theme/theme'
+import theme from 'theme'
 
 export const Header = styled.header`
 	padding: 1rem 2rem;
