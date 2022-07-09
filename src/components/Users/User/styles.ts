@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components'
-import theme from 'theme/theme'
+import theme from 'theme'
 
 type CardProps = {
 	active: boolean
@@ -28,27 +28,13 @@ export const Card = styled.li<CardProps>`
 `
 
 export const Info = styled.section`
-	section {
-		display: flex;
-		gap: 1.6rem;
-		align-items: center;
+	display: flex;
+	gap: 1.6rem;
+	align-items: center;
 
-		div {
-			display: flex;
-			flex-direction: column;
-			gap: 0.5rem;
-
-			h2 {
-				margin: 0;
-				font-weight: 300;
-				font-size: 2rem;
-			}
-
-			span {
-				color: #dddddd;
-				font-size: 1.2rem;
-			}
-		}
+	svg {
+		width: 6rem;
+		height: 6rem;
 	}
 `
 

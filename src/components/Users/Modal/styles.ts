@@ -1,5 +1,6 @@
 import styled from 'styled-components'
-import theme from 'theme/theme'
+import media from 'styled-media-query'
+import theme from 'theme'
 
 export const Overlay = styled.div`
 	background: rgba(10, 10, 10, 0.6);
@@ -31,10 +32,16 @@ export const Close = styled.button`
 export const Container = styled.div`
 	background-color: #1a1a1a;
 	width: 100%;
-	max-width: 90rem;
-	margin: auto;
+	max-width: 75rem;
 	position: relative;
+	display: flex;
+	justify-content: center;
 	border-radius: 0.8rem;
-	padding: 2rem 0;
 	z-index: ${theme.layers.modal};
+	margin: 2rem;
+
+	${media.lessThan('medium')`
+		max-height: 45rem;
+		overflow-y: scroll;
+	`}
 `

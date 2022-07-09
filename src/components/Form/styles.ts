@@ -1,19 +1,13 @@
 import styled from 'styled-components'
+import theme from 'theme'
 
-export const FormStyle = styled.form`
-	display: grid;
-	max-width: 80rem;
-	margin: auto;
-	gap: 2rem;
-
-	main {
-		grid-template-columns: 1fr 1fr;
-		display: grid;
-		gap: 0 1rem;
-
-		svg {
-			color: rgba(241, 241, 241, 0.555);
-			width: 4rem;
-		}
-	}
+export const Form = styled.form`
+	display: flex;
+	width: 100%;
+	height: 100%;
+	flex-direction: column;
+	padding: ${theme.spacing.xs} ${theme.spacing.xxs};
+	border-radius: ${theme.border.radius};
+	gap: ${theme.spacing.xs};
+	max-width: 71rem;
 `
