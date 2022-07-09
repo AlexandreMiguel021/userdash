@@ -1,4 +1,5 @@
 import UsersModal from 'components/Users/Modal'
+import { useApi } from 'hooks/useApi'
 import React, { createContext, ReactNode, useState } from 'react'
 import { toast } from 'react-toastify'
 import {
@@ -39,6 +40,8 @@ export const UserContextProvider = ({ children }: UserContextProps) => {
 		{} as UserFormData
 	)
 
+	const { mutate } = useApi('users')
+
 	const getUsers = async () => {
 		setLoading(true)
 		try {
@@ -68,6 +71,7 @@ export const UserContextProvider = ({ children }: UserContextProps) => {
 		try {
 			setLoading(true)
 			await createUserRequest(user)
+			mutate()
 			toast.success('Usuário criado com sucesso!')
 		} catch (error) {
 			console.log(error)
@@ -92,6 +96,7 @@ export const UserContextProvider = ({ children }: UserContextProps) => {
 
 		try {
 			await updateUserByIdRequest(selectedUser, user)
+			mutate()
 			toast.success('Usuário alterado com sucesso!')
 		} catch (error) {
 			toast.error(error.response.data.message)
@@ -101,6 +106,7 @@ export const UserContextProvider = ({ children }: UserContextProps) => {
 	async function deleteUser() {
 		try {
 			await deleteUserByIdRequest(selectedUser)
+			mutate()
 			toast.success('Usuário deletado com sucesso!')
 		} catch (error) {
 			console.log(error)
