@@ -3,7 +3,7 @@ import User from 'components/Users/User'
 import { UserContext } from 'contexts/UserContext'
 import { Wrapper } from './styles'
 
-const Users = () => {
+function Users() {
 	const { users } = useContext(UserContext)
 
 	return (

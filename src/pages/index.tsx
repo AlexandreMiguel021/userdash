@@ -1,11 +1,10 @@
 import Users from 'components/Users'
-import type { NextPage } from 'next'
 import { UserContext } from 'contexts/UserContext'
 import { useContext } from 'react'
-import Loading from 'components/_ui/Loading'
+import Loading from 'components/Loading'
 import UsersFilter from 'components/Users/Filter'
 
-const Home: NextPage = () => {
+export default function Home() {
 	const { loading } = useContext(UserContext)
 	return (
 		<main>
@@ -14,5 +13,3 @@ const Home: NextPage = () => {
 		</main>
 	)
 }
-
-export default Home

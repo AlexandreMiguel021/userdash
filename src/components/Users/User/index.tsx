@@ -4,9 +4,10 @@ import { User as UserProps } from 'types/user'
 import { UserContext } from 'contexts/UserContext'
 import { Address, Card, Info } from './styles'
 import { H2, Span } from 'components/Typography'
-import Button, { ButtonGroup } from 'components/_ui/Button'
+import Button, { ButtonGroup } from 'components/Button'
+import { UserProfileIcon } from 'assets/icons'
 
-const User = ({ _id, name, email, image, phone, address }: UserProps) => {
+function User({ _id, name, email, image, phone, address }: UserProps) {
 	const {
 		selectedUser,
 		setSelectedUser,
@@ -31,19 +32,20 @@ const User = ({ _id, name, email, image, phone, address }: UserProps) => {
 	}
 
 	return (
-		<Card
-			role='button'
-			active={selectedUser === _id}
-			onClick={() => setSelectedUser(_id)}
-		>
+		<Card active={selectedUser === _id} onClick={() => setSelectedUser(_id)}>
 			<Info>
-				<Image
-					src={image ? image : '/images/user'}
-					alt={`${name} avatar`}
-					width={70}
-					height={70}
-					priority
-				/>
+				{image ? (
+					<Image
+						src={image}
+						alt={`${name} avatar`}
+						width={70}
+						height={70}
+						priority
+					/>
+				) : (
+					<UserProfileIcon />
+				)}
+
 				<div>
 					<H2>{name}</H2>
 					<Span>
@@ -56,12 +58,12 @@ const User = ({ _id, name, email, image, phone, address }: UserProps) => {
 				</div>
 				{selectedUser === _id && (
 					<ButtonGroup
-						style={{ position: 'absolute', top: '2rem', right: '2rem' }}
+						style={{ position: 'absolute', top: '1rem', right: '1rem' }}
 					>
-						<Button size='sm' bgColor='secondary' onClick={updateUserModal}>
+						<Button size='sm' bgColor='primary' onClick={updateUserModal}>
 							Editar
 						</Button>
-						<Button size='sm' bgColor='secondary' onClick={deleteUser}>
+						<Button size='sm' bgColor='primary' onClick={deleteUser}>
 							Deletar
 						</Button>
 					</ButtonGroup>

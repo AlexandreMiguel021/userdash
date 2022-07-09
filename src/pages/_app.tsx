@@ -4,10 +4,10 @@ import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.min.css'
 import Header from 'components/Layout/Header'
 import { ThemeProvider } from 'styled-components'
-import theme from 'theme/theme'
+import theme from 'theme'
 import GlobalStyles from 'theme/globals'
 
-function MyApp({ Component, pageProps }: AppProps) {
+export default function MyApp({ Component, pageProps }: AppProps) {
 	return (
 		<UserContextProvider>
 			<ThemeProvider theme={theme}>
@@ -19,5 +19,3 @@ function MyApp({ Component, pageProps }: AppProps) {
 		</UserContextProvider>
 	)
 }
-
-export default MyApp

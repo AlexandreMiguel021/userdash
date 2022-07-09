@@ -3,13 +3,13 @@ import { XIcon } from '@heroicons/react/outline'
 import { useContext } from 'react'
 import { UserFormData } from 'types/user'
 import { Close, Container, Overlay } from './styles'
-import Form from 'components/Form'
+import CreateUserForm from 'components/_Forms/CreateUser'
 
 type UserModalProps = {
 	initialValues: UserFormData
 }
 
-const UsersModal = ({ initialValues }: UserModalProps) => {
+export default function UsersModal({ initialValues }: UserModalProps) {
 	const { setIsOpenModal } = useContext(UserContext)
 
 	const handleClose = () => {
@@ -19,15 +19,11 @@ const UsersModal = ({ initialValues }: UserModalProps) => {
 	return (
 		<Overlay>
 			<Container>
-				<div>
-					<Close type='button' onClick={handleClose}>
-						<XIcon />
-					</Close>
-					<Form initialValues={initialValues} />
-				</div>
+				<Close onClick={handleClose}>
+					<XIcon />
+				</Close>
+				<CreateUserForm initialValues={initialValues} />
 			</Container>
 		</Overlay>
 	)
 }
-
-export default UsersModal

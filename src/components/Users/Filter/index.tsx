@@ -1,9 +1,9 @@
-import Button from 'components/_ui/Button'
+import Button from 'components/Button'
 import { UserContext } from 'contexts/UserContext'
 import { FormEvent, useContext } from 'react'
 import { Filter as StyleFilter } from './styles'
 
-const UsersFilter = () => {
+export default function UsersFilter() {
 	const { getUsers, setIsOpenModal, setSelectedUser } = useContext(UserContext)
 
 	const handleSubmit = async (e: FormEvent) => {
@@ -27,5 +27,3 @@ const UsersFilter = () => {
 		</StyleFilter>
 	)
 }
-
-export default UsersFilter
