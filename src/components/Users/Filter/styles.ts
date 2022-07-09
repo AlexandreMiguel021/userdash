@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-export const Filter = styled.form`
+export const Filter = styled.div`
 	display: flex;
 	max-width: 80rem;
 	margin: 2rem auto;
